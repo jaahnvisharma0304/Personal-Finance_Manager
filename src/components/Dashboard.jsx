@@ -109,8 +109,8 @@ function Dashboard({ currentUser, setIsAuthenticated }) {
       date: new Date().toISOString(),
       amount: parseFloat(newTransaction.amount)
     };
-    if(transaction.amount - newTransaction.amount < 0) {
-      alert("Insufficient Balance !");
+    if (newTransaction.type === 'expense' && newTransaction.amount > userData.balance) {
+      alert("Insufficient Balance!");
       return;
     }
     const updatedUserData = {
