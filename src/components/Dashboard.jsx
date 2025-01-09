@@ -96,20 +96,7 @@ function Dashboard({ currentUser, setIsAuthenticated }) {
       }
     }
   };
-  
-  // const validateAmount = (value) => {
-  //   // Remove any non-numeric characters except decimal point
-  //   const numericValue = value.replace(/[^\d.]/g, '');
     
-  //   // Ensure only one decimal point
-  //   const parts = numericValue.split('.');
-  //   if (parts.length > 2) {
-  //     return parts[0] + '.' + parts[1];
-  //   }
-    
-  //   return numericValue;
-  // };
-  
   const addTransaction = (e) => {
     e.preventDefault();
     if (isNaN(newTransaction.amount) || newTransaction.amount.trim() === "") {
@@ -122,7 +109,10 @@ function Dashboard({ currentUser, setIsAuthenticated }) {
       date: new Date().toISOString(),
       amount: parseFloat(newTransaction.amount)
     };
-
+    if(transaction.amount - newTransaction.amount < 0) {
+      alert("Insufficient Balance !");
+      return;
+    }
     const updatedUserData = {
       ...userData,
       transactions: [transaction, ...userData.transactions],
@@ -130,7 +120,7 @@ function Dashboard({ currentUser, setIsAuthenticated }) {
         ? userData.balance + parseFloat(newTransaction.amount)
         : userData.balance - parseFloat(newTransaction.amount)
     };
-
+    
     if (newTransaction.type === 'expense') {
       updateBudgetForExpense(newTransaction.category, parseFloat(newTransaction.amount));
     }
@@ -140,26 +130,6 @@ function Dashboard({ currentUser, setIsAuthenticated }) {
     setNewTransaction({ type: 'expense', amount: '', category: '', description: '' });
   };
 
-  // const addWish = (e) => {
-  //   e.preventDefault();
-  //   const wish = {
-  //     id: editingWish ? editingWish.id : uuidv4(),
-  //     ...newWish,
-  //     amount: parseFloat(newWish.amount)
-  //   };
-
-  //   const updatedUserData = {
-  //     ...userData,
-  //     wishes: editingWish 
-  //       ? userData.wishes.map(w => w.id === editingWish.id ? wish : w)
-  //       : [...userData.wishes, wish]
-  //   };
-
-  //   updateUserData(updatedUserData);
-  //   setShowAddWish(false);
-  //   setEditingWish(null);
-  //   setNewWish({ title: '', amount: '', priority: 'Medium' });
-  // };
     const addWish = (e) => {
       e.preventDefault();
 
