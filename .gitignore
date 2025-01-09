@@ -1,0 +1,38 @@
+# Node modules
+node_modules/
+
+# Build output
+/dist
+/build
+
+# Log files
+*.log
+
+# Dependency directories
+/npm-debug.log
+/yarn-debug.log
+/yarn-error.log
+
+# IDE/Editor directories and files
+.idea/
+.vscode/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# TailwindCSS generated files (optional, if you want to ignore custom output files)
+.tailwindcss
+
+# Package lock or yarn lock (optional, if you want to ignore lock files)
+package-lock.json
+yarn.lock
+
+# Other configuration files
+/.vite
+/.nuxt
