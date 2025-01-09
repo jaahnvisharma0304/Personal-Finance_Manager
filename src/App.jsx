@@ -16,7 +16,7 @@ function App() {
   }, []);
 
   return (
-    <Router>
+    <Router basename="/Personal-Finance_Manager">
       <Routes>
         <Route path="/login" element={
           !isAuthenticated ? 
